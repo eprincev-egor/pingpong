@@ -1,0 +1,16 @@
+{
+    "esversion": 7,
+    "strict": "global",
+    "browser": true,
+    "futurehostile": true,
+    "globals": {
+        "console": true,
+        "f": true,
+        "PingPong": true,
+        "Line": true,
+        "Ball": true,
+        "Score": true,
+        "Keyboard": true,
+        "App": true
+    }
+}

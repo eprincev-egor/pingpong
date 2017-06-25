@@ -1,0 +1,10 @@
+{
+  "name": "pingpong",
+  "version": "1.0.0",
+  "description": "classic game",
+  "dependencies": {
+    "funcs": "^1.0.4"
+  },
+  "author": "Eprincev Egor",
+  "license": "MIT"
+}
