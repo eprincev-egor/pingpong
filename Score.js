@@ -30,4 +30,9 @@ class Score {
             this.ping++;
         }
     }
+    
+    clear() {
+        this.ping = 0;
+        this.pong = 0;
+    }
 }

@@ -3,14 +3,17 @@
 class Line {
     constructor(params) {
         params = f.deepMixin({
+            brain: "keyboard1",
             speed: 2,
             color: "orange",
             y: 50,
             x: 95,
             width: 2,
-            height: 20
+            height: 20,
+            historySize: 3
         }, params);
         
+        this.brain = params.brain;
         this.speed = params.speed;
         this.historySize = params.historySize;
         this.color = params.color;
@@ -18,6 +21,24 @@ class Line {
         this.y = params.y;
         this.width = params.width;
         this.height = params.height;
+    }
+    
+    frame(ball, keyboard) {
+        if ( this.brain.indexOf("computer") === 0 ) {
+            this.frameComputer(ball);
+        } else
+        if ( this.brain == "keyboard1" ) {
+            this.frameKeyboard(ball, {
+                up: keyboard.up1,
+                down: keyboard.down1
+            });
+        }
+        if ( this.brain == "keyboard2" ) {
+            this.frameKeyboard(ball, {
+                up: keyboard.up2,
+                down: keyboard.down2
+            });
+        }
     }
     
     frameKeyboard(ball, keyboard) {

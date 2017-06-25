@@ -1,11 +1,20 @@
 "use strict";
 
-class Keyboard {
+class Keyboard extends Events {
     constructor() {
+        super();
+        
         this.codes = {
             19: "pause",
-            38: "up",
-            40: "down"
+            38: "up1",
+            40: "down1",
+            // w
+            87: "up2",
+            // s
+            83: "down2",
+            
+            27: "esc",
+            13: "enter"
         };
         
         document.addEventListener("keydown", function(e) {
@@ -13,6 +22,7 @@ class Keyboard {
             if ( code ) {
                 e.preventDefault();
                 this[ code ] = true;
+                this.trigger(code + ":down", e);
             }
         }.bind(this));
         
@@ -21,6 +31,7 @@ class Keyboard {
             if ( code ) {
                 e.preventDefault();
                 delete this[ code ];
+                this.trigger(code + ":up", e);
             }
         }.bind(this));
     }

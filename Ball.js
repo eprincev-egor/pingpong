@@ -8,8 +8,7 @@ class Ball {
             x: 50,
             y: 50,
             r: 3,
-            historySize: 50,
-            step: 0.05
+            historySize: 50
         }, params);
         
         this.history = [];
@@ -20,7 +19,6 @@ class Ball {
         this.x = params.x;
         this.y = params.y;
         this.r = params.r;
-        this.step = params.step;
     }
     
     frameMove(collision) {
@@ -101,6 +99,19 @@ class Ball {
     }
     
     randomVector() {
+        // на большой скорости сложно играть, если мяч летит в любую сторону
+        if ( Math.random() > 0.5 ) {
+            return {
+                x: 1,
+                y: 0.3
+            };
+        } else {
+            return {
+                x: -1,
+                y: -0.3
+            };
+        }
+        /*
         var rnd = Math.random() * (Math.PI / 2) + Math.PI / 4;
         if ( Math.random() > 0.4 ) {
             rnd += Math.PI;
@@ -110,5 +121,7 @@ class Ball {
             x: Math.sin(rnd),
             y: Math.cos(rnd)
         };
+        
+        */
     }
 }
