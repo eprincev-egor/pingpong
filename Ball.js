@@ -8,7 +8,8 @@ class Ball {
             x: 50,
             y: 50,
             r: 3,
-            historySize: 50
+            historySize: 50,
+            step: 0.05
         }, params);
         
         this.history = [];
@@ -19,6 +20,7 @@ class Ball {
         this.x = params.x;
         this.y = params.y;
         this.r = params.r;
+        this.step = params.step;
     }
     
     frameMove(collision) {

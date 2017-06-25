@@ -107,7 +107,7 @@ class PingPong {
             pong = this.pongLine,
             ball = this.ball,
             tmp1 = ping.frameComputer( ball ),
-            tmp2 = pong.frameKeyboard( this.keyboard ),
+            tmp2 = pong.frameKeyboard( ball, this.keyboard ),
             collisionBounds = ball.frameCollisionBounds(),
             collisionPing = ping.frameCollision( ball ),
             collisionPong = pong.frameCollision( ball ),
@@ -116,6 +116,10 @@ class PingPong {
         if ( collisionBounds ) {
             if ( collisionBounds.bound == "left" || collisionBounds.bound == "right" ) {
                 this.playSound("miss");
+                
+                ball.speed -= ball.step;
+                ping.speed -= ball.step;
+                pong.speed -= ball.step;
             } else {
                 this.playSound("bound");
             }
@@ -124,6 +128,10 @@ class PingPong {
         if ( collisionPong || collisionPing ) {
             ball.color = this.randomColor();
             this.playSound("bit");
+            
+            ball.speed += ball.step;
+            ping.speed += ball.step;
+            pong.speed += ball.step;
         }
         
         ball.frameMove( collision );

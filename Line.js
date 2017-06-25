@@ -20,16 +20,22 @@ class Line {
         this.height = params.height;
     }
     
-    frameKeyboard(keyboard) {
+    frameKeyboard(ball, keyboard) {
         var line = this,
             speed = this.speed;
         
         if ( keyboard.up ) {
             line.y -= speed;
+            if ( this.frameCollision(ball) ) {
+                line.y += speed;
+            }
         }
         
         if ( keyboard.down ) {
             line.y += speed;
+            if ( this.frameCollision(ball) ) {
+                line.y -= speed;
+            }
         }
         
         line.y = Math.max(line.height / 2, line.y);
@@ -54,12 +60,18 @@ class Line {
                 index = length - 1;
             }
             var y = ball.history[ index ],
-                dy = y - line.y;
+                dy = y - line.y,
+                step;
             
             if ( dy > 0 ) {
-                line.y += Math.min( speed, Math.abs(dy) );
+                step = Math.min( speed, Math.abs(dy) );
             } else {
-                line.y -= Math.min( speed, Math.abs(dy) );
+                step = -Math.min( speed, Math.abs(dy) );
+            }
+            
+            line.y += step;
+            if ( this.frameCollision(ball) ) {
+                line.y -= step;
             }
         }
         
