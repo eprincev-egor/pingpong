@@ -37,11 +37,11 @@ class PingPong extends Events {
             },
             computerMedium: {
                 brain: "computer",
-                speed: 1.1
+                speed: 1.3
             },
             computerHard: {
                 brain: "computer",
-                speed: 1.1
+                speed: 2
             }
         };
         
