@@ -13,6 +13,7 @@
         "Keyboard": true,
         "App": true,
         "Menu": true,
-        "Events": true
+        "Events": true,
+        "MouseControl": true
     }
 }

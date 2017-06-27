@@ -22,6 +22,7 @@ class Menu extends Events {
             <div class='PingPongMenu--cell'>
                 <div class='PingPongMenu--inner'>
                     <div class='PingPongMenu--leftSide' data-side='left'>
+                        <div class='PingPongMenu--item' data-type='mouse'>mouse</div>
                         <div class='PingPongMenu--item' data-type='keyboard1'>keyboard 1</div>
                         <div class='PingPongMenu--item' data-type='keyboard2'>keyboard 2</div>
                         <div class='PingPongMenu--item' data-type='computerEasy'>computer easy</div>
@@ -29,6 +30,7 @@ class Menu extends Events {
                         <div class='PingPongMenu--item' data-type='computerHard'>computer hard</div>
                     </div>
                     <div class='PingPongMenu--rightSide' data-side='right'>
+                        <div class='PingPongMenu--item' data-type='mouse'>mouse</div>
                         <div class='PingPongMenu--item' data-type='keyboard1'>keyboard 1</div>
                         <div class='PingPongMenu--item' data-type='keyboard2'>keyboard 2</div>
                         <div class='PingPongMenu--item' data-type='computerEasy'>computer easy</div>

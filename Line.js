@@ -23,7 +23,7 @@ class Line {
         this.height = params.height;
     }
     
-    frame(ball, keyboard) {
+    frame(ball, keyboard, mouseControl) {
         if ( this.brain.indexOf("computer") === 0 ) {
             this.frameComputer(ball);
         } else
@@ -32,12 +32,15 @@ class Line {
                 up: keyboard.up1,
                 down: keyboard.down1
             });
-        }
+        } else
         if ( this.brain == "keyboard2" ) {
             this.frameKeyboard(ball, {
                 up: keyboard.up2,
                 down: keyboard.down2
             });
+        } else
+        if ( this.brain == "mouse" ) {
+            this.frameMouseControl(ball, mouseControl);
         }
     }
     
@@ -58,6 +61,31 @@ class Line {
                 line.y -= speed;
             }
         }
+        
+        line.y = Math.max(line.height / 2, line.y);
+        line.y = Math.min(100 - line.height / 2, line.y);
+    }
+    
+    frameMouseControl(ball, mouseControl) {
+        var line = this,
+            toY = mouseControl.y,
+            y = line.y,
+            diff = toY - y,
+            speed = line.speed;
+        
+        if ( diff === 0 ) {
+            return;
+        }
+        
+        if ( Math.abs(diff) > speed ) {
+            if ( diff > 0 ) {
+                diff = speed;
+            } else {
+                diff = -speed;
+            }
+        }
+        
+        line.y = y + diff;
         
         line.y = Math.max(line.height / 2, line.y);
         line.y = Math.min(100 - line.height / 2, line.y);

@@ -23,6 +23,10 @@ class PingPong extends Events {
             pong: {
                 x: 95
             },
+            mouse: {
+                brain: "mouse",
+                speed: 2
+            },
             keyboard1: {
                 brain: "keyboard1",
                 speed: 2
@@ -49,6 +53,7 @@ class PingPong extends Events {
         this.initBlur();
         this.initMenu();
         this.initKeyboard();
+        this.initMouseControl();
         
         this.score = new Score();
         
@@ -88,6 +93,10 @@ class PingPong extends Events {
                 pong: this.menu.pong
             });
         }.bind(this));
+    }
+    
+    initMouseControl() {
+        this.mouseControl = new MouseControl();
     }
     
     initMenu() {
@@ -181,8 +190,6 @@ class PingPong extends Events {
     }
     
     setSize(width, height) {
-        this.top = height * 0.05;
-        
         this.el.style.width = width + "px";
         this.el.style.height = height + "px";
         
@@ -201,8 +208,12 @@ class PingPong extends Events {
             this.menu.el.style.top = (height - width)/ 2 + "px";
             height = width;
         }
+        this.rect = this.canvas.getBoundingClientRect();
         
         this.px = width / 100;
+        
+        this.mouseControl.px = this.px;
+        this.mouseControl.rect = this.rect;
         
         this.menu.el.style.width = width + "px";
         this.menu.el.style.height = height + "px";
@@ -223,8 +234,8 @@ class PingPong extends Events {
             ping = this.pingLine,
             pong = this.pongLine,
             ball = this.ball,
-            tmp1 = ping.frame( ball, this.keyboard ),
-            tmp2 = pong.frame( ball, this.keyboard ),
+            tmp1 = ping.frame( ball, this.keyboard, this.mouseControl ),
+            tmp2 = pong.frame( ball, this.keyboard, this.mouseControl ),
             collisionBounds = ball.frameCollisionBounds(),
             collisionPing = ping.frameCollision( ball ),
             collisionPong = pong.frameCollision( ball ),
